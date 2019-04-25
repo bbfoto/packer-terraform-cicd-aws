@@ -5,7 +5,7 @@
     ],
     "variables": {
       "ami_name": "app",
-      "ami_base": "{{env `AMI_BASE`}}",
+      "ami_base": "ami-071b619c1acfef3b5",
       "ami_sha": "{{env `SHA`}}",
       "aws_access_key": "{{env `AWS_ACCESS_KEY`}}",
       "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}"
