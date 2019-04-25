@@ -22,7 +22,7 @@ pipeline {
             checkout scm
             wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'xterm']) {
               sh "packer validate ./base/base.json"
-              sh "AMI_BASE=ami-fakefake packer validate app/app.json"
+              sh "AMI_BASE=ami-071b619c1acfef3b5 packer validate app/app.json"
             }
           }
         }
