@@ -117,7 +117,7 @@ generate_terraform_backend() {
 	      LOCATION_CONSTRAINT='--create-bucket-configuration LocationConstraint="${AWS_DEFAULT_REGION}"'
     fi
 
-    BUCKET_NAME="terraform-tfstate-${ACCOUNT_ID}"
+    BUCKET_NAME="testing-terraform-tfstate-${ACCOUNT_ID}"
     BUCKET_EXISTS=$(aws s3api list-buckets | jq ".Buckets[] | select(.Name == \"${BUCKET_NAME}\")")
     if [[ -z "${BUCKET_EXISTS}" ]]; then
         echo "Creating Terraform State S3 Bucket ${BUCKET_NAME} in ${AWS_DEFAULT_REGION}"
