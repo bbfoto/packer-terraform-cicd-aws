@@ -55,7 +55,7 @@
         "scripts": [
           "./app/tasks/apache.sh"
         ],
-        "type": "shell"
+        "type": "shell",
         "pause_before": "80s"
 
       },
