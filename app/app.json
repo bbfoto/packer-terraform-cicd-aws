@@ -53,10 +53,11 @@
       {
         "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E {{ .Path }}",
         "scripts": [
-          "/bin/sleep 80",
           "./app/tasks/apache.sh"
         ],
         "type": "shell"
+        "pause_before": "80s"
+
       },
       {
         "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E {{ .Path }}",
