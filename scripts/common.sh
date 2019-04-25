@@ -117,7 +117,7 @@ generate_terraform_backend() {
 	      LOCATION_CONSTRAINT='--create-bucket-configuration LocationConstraint="${AWS_DEFAULT_REGION}"'
     fi
 
-    BUCKET_NAME="testing-terraform-tfstate-${ACCOUNT_ID}"
+    BUCKET_NAME="brybrewe_ootf_testing-terraform-tfstate-${ACCOUNT_ID}"
     BUCKET_EXISTS=$(aws s3api list-buckets | jq ".Buckets[] | select(.Name == \"${BUCKET_NAME}\")")
     if [[ -z "${BUCKET_EXISTS}" ]]; then
         echo "Creating Terraform State S3 Bucket ${BUCKET_NAME} in ${AWS_DEFAULT_REGION}"
@@ -127,7 +127,7 @@ generate_terraform_backend() {
             --bucket "${BUCKET_NAME}"
     fi
 
-    TABLE_NAME="terraform_locks"
+    TABLE_NAME="brybrewe_ootf_testing_terraform_locks"
     TABLE_INDEX=$(aws dynamodb list-tables | jq ".TableNames | index(\"${TABLE_NAME}\")")
     if [[ "${TABLE_INDEX}" = 'null' ]];then
         echo "Creating Terraform State DynamoDB Lock Table ${TABLE_NAME} in ${AWS_DEFAULT_REGION}"
@@ -137,7 +137,7 @@ generate_terraform_backend() {
             --attribute-definitions AttributeName=LockID,AttributeType=S \
             --key-schema AttributeName=LockID,KeyType=HASH \
             --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1
-        aws dynamodb wait table-exists --table-name terraform_locks
+        aws dynamodb wait table-exists --table-name brybrewe_ootf_testing_terraform_locks
     fi
 
 
@@ -149,7 +149,7 @@ terraform {
     bucket         = "${BUCKET_NAME}"
     key            = "${PROJECT_NAME}"
     region         = "${AWS_DEFAULT_REGION}"
-    dynamodb_table = "terraform_locks"
+    dynamodb_table = "brybrewe_ootf_testing_terraform_locks"
   }
 }
 EOF
