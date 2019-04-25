@@ -23,8 +23,3 @@ resource "aws_vpc" "dmz" {
 output "dmz_vpc_id" {
   value = "${aws_vpc.dmz.id}"
 }
-
-resource "aws_instance" "demo_example" {
-  ami           = "ami-071b619c1acfef3b5"
-  instance_type = "t2.micro"
-}
